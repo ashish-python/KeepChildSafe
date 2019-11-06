@@ -181,7 +181,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             lat += 0.001;
             locationMarker.setPosition(new LatLng(lat , -74.026190));
         }
-
     }
 
     private void getParentData() {
