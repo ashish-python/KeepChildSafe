@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Safe Child</string>
+    <string name="notification_channel_description">Keep Child Safe Notification</string>
+    <string name="welcome_message">Hi, your child\'s geofencing data will be displayed here </string>
+    <string name="title_activity_maps" translatable="false">Map</string>
+    <string name="about_us">About us</string>
+    <string name="sign_out">Sign out</string>
+    <string name="track_child">Track your child</string>
+    <string name="location_request_message">The application cannot work if you do not share your location with us. Click the button below to grant location permission</string>
+    <string name="location_do_not_show_again">The application cannot work if you do not share your location with us. Please go to phone settings and enable location access for the Geofencing app</string>
+    <string name="geofence_set_failure">Some error occurred. Please close the app and try again in some time</string>
+    <string name="location_permission">Allow location access</string>
+    <string name="seek_permission">Share location</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="login_error">Username or password incorrect.\nPlease try again</string>
+    <string name="track">Track</string>
+    <string name="stop_tracking">Stop Tracking</string>
+</resources>
