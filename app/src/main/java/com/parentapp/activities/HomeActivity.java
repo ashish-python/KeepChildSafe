@@ -38,7 +38,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class HomeActivity extends BaseAppCompatActivity {
+public class HomeActivity extends BaseAppCompatActivity implements BaseListener{
 
     private ImageView settingsButton;
     private boolean isHomeFullyVisible = true;
@@ -155,8 +155,6 @@ public class HomeActivity extends BaseAppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<InstanceIdResult> task) {
                         if (!task.isSuccessful()) {
-                            Log.w("FCM_TOKEN: ", "getInstanceId failed", task.getException());
-                            return;
 
                         }
                         // Get Instance ID token
@@ -166,10 +164,22 @@ public class HomeActivity extends BaseAppCompatActivity {
                         TokenStore tokenStore = TokenStore.getInstance(getApplicationContext());
                         if (!token.equals(tokenStore.getFCMToken())) {
                             tokenStore.setFCMToken(token);
+                            parentUpdateFCMToken(token);
                         }
                         Log.v("FCM_TOKEN: ", token);
+                        parentUpdateFCMToken(token);
                     }
                 });
+    }
+
+    private void parentUpdateFCMToken(String newFCMToken){
+        new NetworkPostRequest(HomeActivity.this, Constants.PARENT_FCM_TOKEN_UPDATE_URL, this::callback, Constants.PARENT_UPDATE_FCM_TOKEN).execute(TokenStore.getInstance(getApplicationContext()).getUser(), newFCMToken);
+    }
+
+
+    @Override
+    public void callback(Context context, Integer status, String responseString) {
+        Log.v("FCM_UPDATE", responseString);
     }
 
     private void setHomeTranslationDistance() {

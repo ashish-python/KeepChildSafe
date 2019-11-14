@@ -62,6 +62,10 @@ public class NetworkPostRequest extends AsyncTask<String, Void, String> {
                     data = URLEncoder.encode("id","UTF-8")+"="+URLEncoder.encode("5db751c5eaa4f643e85bf023","UTF-8") + "&&" +
                             URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode("kat","UTF-8");
                     break;
+                case Constants.PARENT_UPDATE_FCM_TOKEN:
+                    data = URLEncoder.encode("id","UTF-8")+"="+URLEncoder.encode(strings[0],"UTF-8") + "&&" +
+                            URLEncoder.encode("fcmToken","UTF-8")+"="+URLEncoder.encode(strings[1],"UTF-8");
+                    break;
             }
 
             writer.write(data);

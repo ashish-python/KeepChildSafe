@@ -171,7 +171,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     //If the request is to send location then start a loop  that retrieves last known location every second and displays it on the map
     @Override
     public void callback(Context context, Integer status, String responseString) {
-        Log.v("FCM_CALLBACK", "MAP HERE");
+        Log.v("FCM_CALLBACK", responseString);
         if (locationMarker == null){
             locationMarker = mMap.addMarker(new MarkerOptions().position(new LatLng(lat, -74.026190))
                     .title("location")
@@ -198,7 +198,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (jsonObject.has("children")) {
                         JSONArray childrenArray = jsonObject.getJSONArray("children");
                         for (int i = 0; i < childrenArray.length(); i++) {
-                            if (childrenArray.getJSONObject(i).has("geofences")) {
+                            if (childrenArray.getJSONObject(i).has("registeredGeofences")) {
                                 geofencesMap.put(childrenArray.getJSONObject(i).getString("id"), childrenArray.getJSONObject(i));
                             }
                         }
@@ -261,7 +261,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         selectedChildId = childIdList.get(position);
         JSONObject childObj = geofencesMap.get(selectedChildId);
         try {
-            JSONArray geofenceArray = childObj.getJSONArray("geofences");
+            JSONArray geofenceArray = childObj.getJSONArray("registeredGeofences");
             mMap.clear();
             Log.v("FCM_GEO_LENGTH", String.valueOf(geofenceArray.length()));
             for (int i = 0; i < geofenceArray.length(); i++) {

@@ -41,9 +41,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:dropDownWidth="wrap_content"
-            android:backgroundTint="@color/black"
-            android:popupBackground="@color/green"
-            android:backgroundTintMode="src_atop"
              />
 
         <Button
