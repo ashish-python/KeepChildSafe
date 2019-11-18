@@ -50,13 +50,15 @@ public class NetworkPostRequest extends AsyncTask<String, Void, String> {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(ops,"UTF-8"));
             String data = "";
             switch (task) {
-                case Constants.GET_MAPS:
-                    data = URLEncoder.encode("fcm_token","UTF-8")+"="+URLEncoder.encode(strings[0],"UTF-8") + "&&" +
-                            URLEncoder.encode("task","UTF-8")+"="+URLEncoder.encode(strings[1],"UTF-8");
+                case Constants.REQUEST_LOCATION_TASK:
+                    data = URLEncoder.encode("id","UTF-8")+"="+URLEncoder.encode(strings[0],"UTF-8") + "&&" +
+                            URLEncoder.encode("parentId","UTF-8")+"="+URLEncoder.encode(strings[1],"UTF-8") + "&&" +
+                            URLEncoder.encode("task","UTF-8")+"="+URLEncoder.encode(strings[2],"UTF-8");
                     break;
                 case Constants.SIGN_IN:
                     data = URLEncoder.encode("username","UTF-8")+"="+URLEncoder.encode(strings[0],"UTF-8") + "&&" +
                             URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(strings[1],"UTF-8");
+                    Log.v("SIGN_IN_LOG", data);
                     break;
                 case Constants.GET_PARENT_DATA:
                     data = URLEncoder.encode("id","UTF-8")+"="+URLEncoder.encode("5db751c5eaa4f643e85bf023","UTF-8") + "&&" +
@@ -66,6 +68,9 @@ public class NetworkPostRequest extends AsyncTask<String, Void, String> {
                     data = URLEncoder.encode("id","UTF-8")+"="+URLEncoder.encode(strings[0],"UTF-8") + "&&" +
                             URLEncoder.encode("fcmToken","UTF-8")+"="+URLEncoder.encode(strings[1],"UTF-8");
                     break;
+                case Constants.GET_CHILD_LOCATION_TASK:
+                    data = URLEncoder.encode("childId","UTF-8")+"="+URLEncoder.encode(strings[0],"UTF-8") + "&&" +
+                            URLEncoder.encode("parentId","UTF-8")+"="+URLEncoder.encode(strings[1],"UTF-8");
             }
 
             writer.write(data);

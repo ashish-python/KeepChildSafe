@@ -1,25 +1,19 @@
 package com.parentapp.activities;
 
 import androidx.annotation.ColorInt;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentActivity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -40,12 +34,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, BaseListener {
 
@@ -135,20 +125,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     //This method makes a POST request to a script on the server to send a push notification to the child to start sending location information
     private void handleLocationSharingRequest(String task) {
-        new NetworkPostRequest(getApplicationContext(), Constants.TRACK_LOCATION_NOTIFICATION_URL, this::callback, Constants.GET_MAPS).execute(FCM_TOKEN, task);
+        new NetworkPostRequest(getApplicationContext(), Constants.TRACK_LOCATION_NOTIFICATION_URL, this::callback2, Constants.REQUEST_LOCATION_TASK).execute(childIdList.get(lastSpinnerPosition), TokenStore.getInstance(getApplicationContext()).getUser(), task);
+    }
+
+    private void getChildLocation(String task) {
+        new NetworkPostRequest(getApplicationContext(), Constants.GET_CHILD_LOCATION_URL, this::callback, Constants.GET_CHILD_LOCATION_TASK).execute(childIdList.get(lastSpinnerPosition), TokenStore.getInstance(getApplicationContext()).getUser());
     }
 
     private void startLocationTracking() {
         MapsActivity.track = true;
         trackBtn.setText(R.string.stop_tracking);
+        handleLocationSharingRequest(Constants.SEND_LOCATION_REQUEST);
         new Thread(new Runnable() {
             @Override
             public void run() {
                 int i = 0;
                 while (MapsActivity.track) {
-                    handleLocationSharingRequest(Constants.SEND_LOCATION_REQUEST);
+                    getChildLocation(Constants.GET_CHILD_LOCATION_TASK);
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(2000);
                         Log.v("FCM_START", String.valueOf(i++));
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -167,19 +162,35 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         handleLocationSharingRequest(Constants.STOP_LOCATION_REQUEST);
     }
 
+    public void callback2(Context context, Integer status, String responseString) {
+        Log.v("FCM_LOC_REQ_RESP", responseString);
+    }
+
     //This callback method is called after a push notification is sent to the child to start or stop sending location
     //If the request is to send location then start a loop  that retrieves last known location every second and displays it on the map
     @Override
     public void callback(Context context, Integer status, String responseString) {
         Log.v("FCM_CALLBACK", responseString);
-        if (locationMarker == null){
-            locationMarker = mMap.addMarker(new MarkerOptions().position(new LatLng(lat, -74.026190))
-                    .title("location")
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-        }
-        else {
-            lat += 0.001;
-            locationMarker.setPosition(new LatLng(lat , -74.026190));
+        if (!responseString.equals("fail")) {
+            try {
+                JSONObject jsonObject = new JSONObject(responseString);
+
+                Double lat = jsonObject.getDouble("lastKnownLat");
+                Double lng = jsonObject.getDouble("lastKnownLng");
+
+                if (locationMarker == null) {
+                    locationMarker = mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng))
+                            .title("location")
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+
+                } else {
+
+                    locationMarker.setPosition(new LatLng(lat, lng));
+                }
+                // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(40.743609, -74.0270757), 15));
+            } catch (JSONException e) {
+                Log.v("FCM_ERR", e.toString());
+            }
         }
     }
 

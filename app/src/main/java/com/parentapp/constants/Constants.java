@@ -12,10 +12,11 @@ public class Constants {
 
     //Katya
 
-    public static String SIGN_IN_URL = "http://155.246.218.190:3000/authenticateParent";
-    public static String GET_PARENT_DATA_URL = "http://155.246.218.190:3000/parentData";
-    public static String TRACK_LOCATION_NOTIFICATION_URL = "http://155.246.218.190:3000/parentData";
-    public static String PARENT_FCM_TOKEN_UPDATE_URL = "http://155.246.218.190:3000/parentFCMTokenUpdate";
+    public static String SIGN_IN_URL = "http://155.246.218.43:3000/authenticateParent";
+    public static String GET_PARENT_DATA_URL = "http://155.246.218.43:3000/parentData";
+    public static String TRACK_LOCATION_NOTIFICATION_URL = "http://155.246.218.43:3000/childLocationRequestNotification";
+    public static String PARENT_FCM_TOKEN_UPDATE_URL = "http://155.246.218.43:3000/parentFCMTokenUpdate";
+    public static final String GET_CHILD_LOCATION_URL = "http://155.246.218.43:3000/sendLastKnownLocationToParent";
 
 
 
@@ -29,7 +30,8 @@ public class Constants {
     public static final String STOP_LOCATION_REQUEST = "stop location";
     public static final String GET_PARENT_DATA = "get_parent_data";
     public static final String SIGN_IN = "sign_in";
-    public static final String GET_MAPS = "maps";
+    public static final String REQUEST_LOCATION_TASK = "request_location";
     public static final String PARENT_UPDATE_FCM_TOKEN = "parent_update_fcm_token";
+    public static final String GET_CHILD_LOCATION_TASK = "get_child_location";
 
 }
