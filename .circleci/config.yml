@@ -23,6 +23,11 @@ jobs:
       - run:
           name: Run Tests
           command: ./gradlew lint test
+      - run:
+          name: Codecov Report
+          command: |
+          ./gradlew jacocoTestReport
+          bash <(curl -s https://codecov.io/bash) -t 8efa14fd-0667-4479-8de9-b95ed605165a
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: app/build/reports
           destination: reports
