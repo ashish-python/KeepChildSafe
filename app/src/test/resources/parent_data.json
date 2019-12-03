@@ -1,140 +1,91 @@
 {
-  "cycles":[
+  "_id": "5db751c5eaa4f643e85bf023",
+  "username": "kat",
+  "email": "kat@gmail.com",
+  "password": "DUod5jjqZCyQCV6IlUTeefUh.CC75v7iSRlyyiiUGYtjA6Yy4Ji",
+  "firstName": "Kat",
+  "lastName": "Bevinova",
+  "phoneNumber": "111-111-1111",
+  "children": [
     {
-      "instruments_completed": 1,
-      "instruments_goal": 4,
-      "time_end": "2018-06-25T04:00:00.000Z",
-      "target": 4,
-      "map_steps": [
-        1,
-        2,
-        4,
-        7
-      ],
-      "reward": 1000,
-      "duration": 7,
-      "enter_time": "2018-05-30T04:00:00.000Z",
-      "is_last": true,
-      "cycle_id": 1,
-      "world": {
-        "id": "1",
-        "url": "https://s3.amazonaws.com/test-ctrl-raw-data/assets/maps/android_1_xhdpi.zip"
-      }
+      "id": "5db8d8c1065e01661c60b88g",
+      "childFirstName": "Cynthia",
+      "childLastName": "Roberts",
+      "childPhoneNumber": "732-614-5717",
+      "registeredGeofences": [
+        {
+          "geofenceId": "5db8d8e1065e01661c60b890",
+          "geofenceName": "Babbio Center",
+          "formattedAddress": "41 E 5th St, Howell Township, NJ 07731, USA",
+          "lat": 40.742965,
+          "lng": -74.026637,
+          "radius": 50
+        },
+        {
+          "geofenceId": "5db8d8e1065e01661c60b891",
+          "geofenceName": "Charles Schaefer School",
+          "formattedAddress": "41 E 5th St, Howell Township, NJ 07731, USA",
+          "lat": 40.742461,
+          "lng": -74.027739,
+          "radius": 20
+        },
+        {
+          "geofenceId": "5db8d8e1065e01661c60b892",
+          "geofenceName": "Altorfer Academic Building",
+          "formattedAddress": "41 E 5th St, Howell Township, NJ 07731, USA",
+          "lat": 40.743616,
+          "lng": -74.027096,
+          "radius": 20
+        },
+        {
+          "geofenceId": "5db8d8e1065e01661c60b893",
+          "geofenceName": "Debaun Aquatics Center ",
+          "formattedAddress": "41 E 5th St, Howell Township, NJ 07731, USA",
+          "lat": 40.744518,
+          "lng": -74.025716,
+          "radius": 70
+        }
+      ]
     },
     {
-      "target":4,
-      "map_steps":[
-        4,
-        4,
-        3,
-        3
-      ],
-      "reward_amount":100,
-      "duration":1,
-      "enter_time":"2019-03-13T04:00:00.000Z",
-      "world":{
-        "id":"2",
-        "url":"https://s3.amazonaws.com/test-ctrl-raw-data/assets/maps/android_2_xxhdpi.zip"
-      },
-      "cycle_id":639,
-      "instruments_completed":0,
-      "reward_type":"cash"
-    },
-    {
-      "target":4,
-      "map_steps":[
-        4,
-        4,
-        3,
-        3
-      ],
-      "reward_amount":100,
-      "duration":1,
-      "enter_time":"2019-03-14T04:00:00.000Z",
-      "world":{
-        "id":"3",
-        "url":"https://s3.amazonaws.com/test-ctrl-raw-data/assets/maps/android_3_xxhdpi.zip"
-      },
-      "cycle_id":640,
-      "instruments_completed":0,
-      "reward_type":"cash"
-    },
-    {
-      "target":4,
-      "map_steps":[
-        4,
-        4,
-        3,
-        3
-      ],
-      "reward_amount":100,
-      "duration":1,
-      "enter_time":"2019-03-15T04:00:00.000Z",
-      "world":{
-        "id":"4",
-        "url":"https://s3.amazonaws.com/test-ctrl-raw-data/assets/maps/android_4_xxhdpi.zip"
-      },
-      "cycle_id":641,
-      "instruments_completed":0,
-      "reward_type":"cash"
-    },
-    {
-      "target":4,
-      "map_steps":[
-        4,
-        4,
-        3,
-        3
-      ],
-      "reward_amount":100,
-      "duration":1,
-      "enter_time":"2019-03-13T04:00:00.000Z",
-      "world":{
-        "id":"2",
-        "url":"https://s3.amazonaws.com/test-ctrl-raw-data/assets/maps/android_2_xxhdpi.zip"
-      },
-      "cycle_id":639,
-      "instruments_completed":0,
-      "reward_type":"cash"
-    },
-    {
-      "target":4,
-      "map_steps":[
-        4,
-        4,
-        3,
-        3
-      ],
-      "reward_amount":100,
-      "duration":1,
-      "enter_time":"2019-03-14T04:00:00.000Z",
-      "world":{
-        "id":"3",
-        "url":"https://s3.amazonaws.com/test-ctrl-raw-data/assets/maps/android_3_xxhdpi.zip"
-      },
-      "cycle_id":640,
-      "instruments_completed":0,
-      "reward_type":"cash"
-    },
-    {
-      "target":4,
-      "map_steps":[
-        4,
-        4,
-        3,
-        3
-      ],
-      "reward_amount":100,
-      "duration":1,
-      "enter_time":"2019-03-15T04:00:00.000Z",
-      "world":{
-        "id":"4",
-        "url":"https://s3.amazonaws.com/test-ctrl-raw-data/assets/maps/android_4_xxhdpi.zip"
-      },
-      "cycle_id":641,
-      "instruments_completed":0,
-      "reward_type":"cash"
+      "id": "5db8d8c1065e01661c60b88f",
+      "childFirstName": "Maya",
+      "childLastName": "Roberts",
+      "childPhoneNumber": "732-614-5718",
+      "registeredGeofences": [
+        {
+          "geofenceId": "6db8d8e1065e01661c60b894",
+          "geofenceName": "Home",
+          "formattedAddress": "41 E 5th St, Howell Township, NJ 07731, USA",
+          "lat": 40.1708061,
+          "lng": -74.2355633,
+          "radius": 50
+        },
+        {
+          "geofenceId": "6db8d8e1065e01661c60b895",
+          "geofenceName": "Liquor Store",
+          "formattedAddress": "41 E 5th St, Howell Township, NJ 07731, USA",
+          "lat": 40.1708061,
+          "lng": -75.2355633,
+          "radius": 20
+        },
+        {
+          "geofenceId": "6db8d8e1065e01661c60b896",
+          "geofenceName": "Library",
+          "formattedAddress": "41 E 5th St, Howell Township, NJ 07731, USA",
+          "lat": 40.1708061,
+          "lng": -74.6355633,
+          "radius": 20
+        },
+        {
+          "geofenceId": "6db8d8e1065e01661c60b896",
+          "geofenceName": "Hospital ",
+          "formattedAddress": "41 E 5th St, Howell Township, NJ 07731, USA",
+          "lat": 40.1708061,
+          "lng": -73.2355633,
+          "radius": 70
+        }
+      ]
     }
-  ],
-  "message":"SUCCESS"
+  ]
 }

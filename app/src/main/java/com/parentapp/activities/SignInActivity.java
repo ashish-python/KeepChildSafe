@@ -49,7 +49,7 @@ public class SignInActivity extends BaseAppCompatActivity implements BaseListene
     }
 
     @VisibleForTesting
-    private void signIn(String email, String password) {
+    void signIn(String email, String password) {
         new NetworkPostRequest(this, Endpoints.SIGN_IN_URL, this::callback, Endpoints.SIGN_IN).execute(email, password);
     }
 
