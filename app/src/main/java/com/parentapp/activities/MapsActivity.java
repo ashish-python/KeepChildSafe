@@ -24,7 +24,7 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.parentapp.constants.Constants;
+import com.parentapp.constants.Endpoints;
 import com.parentapp.listeners.BaseListener;
 import com.parentapp.stores.TokenStore;
 import com.parentapp.utils.NetworkPostRequest;
@@ -56,7 +56,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker locationMarker;
     private Handler handler = new Handler();
     private int lastSpinnerPosition = 0;
-    Double lat = 40.743431;
 
 
     @Override
@@ -125,23 +124,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     //This method makes a POST request to a script on the server to send a push notification to the child to start sending location information
     private void handleLocationSharingRequest(String task) {
-        new NetworkPostRequest(getApplicationContext(), Constants.TRACK_LOCATION_NOTIFICATION_URL, this::callback2, Constants.REQUEST_LOCATION_TASK).execute(childIdList.get(lastSpinnerPosition), TokenStore.getInstance(getApplicationContext()).getUser(), task);
+        new NetworkPostRequest(getApplicationContext(), Endpoints.TRACK_LOCATION_NOTIFICATION_URL, this::callback2, Endpoints.REQUEST_LOCATION_TASK).execute(childIdList.get(lastSpinnerPosition), TokenStore.getInstance(getApplicationContext()).getUser(), task);
     }
 
     private void getChildLocation(String task) {
-        new NetworkPostRequest(getApplicationContext(), Constants.GET_CHILD_LOCATION_URL, this::callback, Constants.GET_CHILD_LOCATION_TASK).execute(childIdList.get(lastSpinnerPosition), TokenStore.getInstance(getApplicationContext()).getUser());
+        new NetworkPostRequest(getApplicationContext(), Endpoints.GET_CHILD_LOCATION_URL, this::callback, Endpoints.GET_CHILD_LOCATION_TASK).execute(childIdList.get(lastSpinnerPosition), TokenStore.getInstance(getApplicationContext()).getUser());
     }
 
     private void startLocationTracking() {
         MapsActivity.track = true;
         trackBtn.setText(R.string.stop_tracking);
-        handleLocationSharingRequest(Constants.SEND_LOCATION_REQUEST);
+        handleLocationSharingRequest(Endpoints.SEND_LOCATION_REQUEST);
         new Thread(new Runnable() {
             @Override
             public void run() {
                 int i = 0;
                 while (MapsActivity.track) {
-                    getChildLocation(Constants.GET_CHILD_LOCATION_TASK);
+                    getChildLocation(Endpoints.GET_CHILD_LOCATION_TASK);
                     try {
                         Thread.sleep(2000);
                         Log.v("FCM_START", String.valueOf(i++));
@@ -159,7 +158,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Log.v("FCM_STOP", "STOP");
         trackBtn.setText(R.string.track);
         //Tell the child phone to stop tracking location information
-        handleLocationSharingRequest(Constants.STOP_LOCATION_REQUEST);
+        handleLocationSharingRequest(Endpoints.STOP_LOCATION_REQUEST);
     }
 
     public void callback2(Context context, Integer status, String responseString) {
@@ -195,7 +194,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void getParentData() {
-        new NetworkPostRequest(MapsActivity.this, Constants.GET_PARENT_DATA_URL, this::showGeofences, Constants.GET_PARENT_DATA).execute(TokenStore.getInstance(getApplicationContext()).getUser());
+        new NetworkPostRequest(MapsActivity.this, Endpoints.GET_PARENT_DATA_URL, this::showGeofences, Endpoints.GET_PARENT_DATA).execute(TokenStore.getInstance(getApplicationContext()).getUser());
     }
 
     //A callback method called after information of the parent and the kids is fetched from the server
@@ -241,23 +240,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         SpinnerAdapter adapter = new SpinnerAdapter(MapsActivity.this, childNameList);
                         //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner.setAdapter(adapter);
-                    }
-                    //OnItemSelectedListener for the spinner
-                    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                            if (lastSpinnerPosition != position) {
-                                lastSpinnerPosition = position;
-                                stopLocationTracking();
+
+                        //OnItemSelectedListener for the spinner
+                        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                                if (lastSpinnerPosition != position) {
+                                    lastSpinnerPosition = position;
+                                    stopLocationTracking();
+                                }
+                                drawGeofences(position);
                             }
-                            drawGeofences(position);
-                        }
 
-                        @Override
-                        public void onNothingSelected(AdapterView<?> adapterView) {
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
 
-                        }
-                    });
+                            }
+                        });
+                    }
                 }
             }
         }.execute();

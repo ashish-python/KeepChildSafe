@@ -1,0 +1,140 @@
+{
+  "cycles":[
+    {
+      "instruments_completed": 1,
+      "instruments_goal": 4,
+      "time_end": "2018-06-25T04:00:00.000Z",
+      "target": 4,
+      "map_steps": [
+        1,
+        2,
+        4,
+        7
+      ],
+      "reward": 1000,
+      "duration": 7,
+      "enter_time": "2018-05-30T04:00:00.000Z",
+      "is_last": true,
+      "cycle_id": 1,
+      "world": {
+        "id": "1",
+        "url": "https://s3.amazonaws.com/test-ctrl-raw-data/assets/maps/android_1_xhdpi.zip"
+      }
+    },
+    {
+      "target":4,
+      "map_steps":[
+        4,
+        4,
+        3,
+        3
+      ],
+      "reward_amount":100,
+      "duration":1,
+      "enter_time":"2019-03-13T04:00:00.000Z",
+      "world":{
+        "id":"2",
+        "url":"https://s3.amazonaws.com/test-ctrl-raw-data/assets/maps/android_2_xxhdpi.zip"
+      },
+      "cycle_id":639,
+      "instruments_completed":0,
+      "reward_type":"cash"
+    },
+    {
+      "target":4,
+      "map_steps":[
+        4,
+        4,
+        3,
+        3
+      ],
+      "reward_amount":100,
+      "duration":1,
+      "enter_time":"2019-03-14T04:00:00.000Z",
+      "world":{
+        "id":"3",
+        "url":"https://s3.amazonaws.com/test-ctrl-raw-data/assets/maps/android_3_xxhdpi.zip"
+      },
+      "cycle_id":640,
+      "instruments_completed":0,
+      "reward_type":"cash"
+    },
+    {
+      "target":4,
+      "map_steps":[
+        4,
+        4,
+        3,
+        3
+      ],
+      "reward_amount":100,
+      "duration":1,
+      "enter_time":"2019-03-15T04:00:00.000Z",
+      "world":{
+        "id":"4",
+        "url":"https://s3.amazonaws.com/test-ctrl-raw-data/assets/maps/android_4_xxhdpi.zip"
+      },
+      "cycle_id":641,
+      "instruments_completed":0,
+      "reward_type":"cash"
+    },
+    {
+      "target":4,
+      "map_steps":[
+        4,
+        4,
+        3,
+        3
+      ],
+      "reward_amount":100,
+      "duration":1,
+      "enter_time":"2019-03-13T04:00:00.000Z",
+      "world":{
+        "id":"2",
+        "url":"https://s3.amazonaws.com/test-ctrl-raw-data/assets/maps/android_2_xxhdpi.zip"
+      },
+      "cycle_id":639,
+      "instruments_completed":0,
+      "reward_type":"cash"
+    },
+    {
+      "target":4,
+      "map_steps":[
+        4,
+        4,
+        3,
+        3
+      ],
+      "reward_amount":100,
+      "duration":1,
+      "enter_time":"2019-03-14T04:00:00.000Z",
+      "world":{
+        "id":"3",
+        "url":"https://s3.amazonaws.com/test-ctrl-raw-data/assets/maps/android_3_xxhdpi.zip"
+      },
+      "cycle_id":640,
+      "instruments_completed":0,
+      "reward_type":"cash"
+    },
+    {
+      "target":4,
+      "map_steps":[
+        4,
+        4,
+        3,
+        3
+      ],
+      "reward_amount":100,
+      "duration":1,
+      "enter_time":"2019-03-15T04:00:00.000Z",
+      "world":{
+        "id":"4",
+        "url":"https://s3.amazonaws.com/test-ctrl-raw-data/assets/maps/android_4_xxhdpi.zip"
+      },
+      "cycle_id":641,
+      "instruments_completed":0,
+      "reward_type":"cash"
+    }
+  ],
+  "message":"SUCCESS"
+}

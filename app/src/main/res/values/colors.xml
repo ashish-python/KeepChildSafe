@@ -10,5 +10,8 @@
     <color name="black">#000000</color>
     <color name="red">#FF0000</color>
     <color name="green">#65003b00</color>
+    <color name="black_light">#252525</color>
+    <color name="black_light_transparent">#99252525</color>
+    <color name="orange">#FE6969</color>
 
 </resources>

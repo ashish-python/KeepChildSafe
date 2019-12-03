@@ -1,7 +1,5 @@
 package com.parentapp.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -12,7 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.parentapp.constants.Constants;
+import com.google.android.gms.common.util.VisibleForTesting;
+import com.parentapp.constants.Endpoints;
 import com.parentapp.listeners.BaseListener;
 import com.parentapp.stores.TokenStore;
 import com.parentapp.utils.NetworkPostRequest;
@@ -49,13 +48,18 @@ public class SignInActivity extends BaseAppCompatActivity implements BaseListene
         });
     }
 
+    @VisibleForTesting
     private void signIn(String email, String password) {
-        new NetworkPostRequest(this, Constants.SIGN_IN_URL, this::callback, Constants.SIGN_IN).execute(email, password);
+        new NetworkPostRequest(this, Endpoints.SIGN_IN_URL, this::callback, Endpoints.SIGN_IN).execute(email, password);
     }
 
     @Override
     public void callback(Context context, Integer status, String responseString) {
-        if (responseString.equals("fail")) {
+        if (responseString.equals("IOException") || responseString.equals("Malformed URL")) {
+            signInBtn.setEnabled(true);
+            errorMessageTV.setVisibility(View.VISIBLE);
+            errorMessageTV.setText(R.string.network_error);
+        } else if (responseString.equals("fail")) {
             signInBtn.setEnabled(true);
             errorMessageTV.setVisibility(View.VISIBLE);
             errorMessageTV.setText(R.string.login_error);
@@ -63,7 +67,7 @@ public class SignInActivity extends BaseAppCompatActivity implements BaseListene
             TokenStore.getInstance(getApplicationContext()).setUser(responseString);
             startActivity(SignInActivity.this, MainActivity.class, FINISH_CURRENT_ACTIVITY);
         }
-        Log.v("FCM_RETURNEDD", responseString);
+        Log.v("FCM_SIGN_IN", responseString);
     }
 
     public void dismissKeyboard() {

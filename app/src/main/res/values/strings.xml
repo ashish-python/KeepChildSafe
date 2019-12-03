@@ -17,4 +17,7 @@
     <string name="login_error">Username or password incorrect.\nPlease try again</string>
     <string name="track">Track</string>
     <string name="stop_tracking">Stop Tracking</string>
+    <string name="network_error">Cannot connect to server. Please try again in some time</string>
+    <string name="no_geofence_event_message">No geofence events for the child. \nPlease check if you  have set any geofences for the child</string>
+    <string name="cordon">Cordon</string>
 </resources>

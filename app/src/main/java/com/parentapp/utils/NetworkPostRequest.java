@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 
-import com.parentapp.constants.Constants;
+import com.parentapp.constants.Endpoints;
 import com.parentapp.listeners.BaseListener;
 
 import java.io.BufferedReader;
@@ -50,27 +50,37 @@ public class NetworkPostRequest extends AsyncTask<String, Void, String> {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(ops,"UTF-8"));
             String data = "";
             switch (task) {
-                case Constants.REQUEST_LOCATION_TASK:
+                case Endpoints.REQUEST_LOCATION_TASK:
                     data = URLEncoder.encode("id","UTF-8")+"="+URLEncoder.encode(strings[0],"UTF-8") + "&&" +
                             URLEncoder.encode("parentId","UTF-8")+"="+URLEncoder.encode(strings[1],"UTF-8") + "&&" +
                             URLEncoder.encode("task","UTF-8")+"="+URLEncoder.encode(strings[2],"UTF-8");
                     break;
-                case Constants.SIGN_IN:
+                case Endpoints.SIGN_IN:
                     data = URLEncoder.encode("username","UTF-8")+"="+URLEncoder.encode(strings[0],"UTF-8") + "&&" +
                             URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(strings[1],"UTF-8");
                     Log.v("SIGN_IN_LOG", data);
                     break;
-                case Constants.GET_PARENT_DATA:
+                case Endpoints.GET_PARENT_DATA:
                     data = URLEncoder.encode("id","UTF-8")+"="+URLEncoder.encode("5db751c5eaa4f643e85bf023","UTF-8") + "&&" +
                             URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode("kat","UTF-8");
                     break;
-                case Constants.PARENT_UPDATE_FCM_TOKEN:
+                case Endpoints.PARENT_UPDATE_FCM_TOKEN:
                     data = URLEncoder.encode("id","UTF-8")+"="+URLEncoder.encode(strings[0],"UTF-8") + "&&" +
                             URLEncoder.encode("fcmToken","UTF-8")+"="+URLEncoder.encode(strings[1],"UTF-8");
                     break;
-                case Constants.GET_CHILD_LOCATION_TASK:
+                case Endpoints.GET_CHILD_LOCATION_TASK:
                     data = URLEncoder.encode("childId","UTF-8")+"="+URLEncoder.encode(strings[0],"UTF-8") + "&&" +
                             URLEncoder.encode("parentId","UTF-8")+"="+URLEncoder.encode(strings[1],"UTF-8");
+                    break;
+                case Endpoints.GET_CHILD_EVENTS_HISTORY_TASK:
+                    Log.v("FCM_CHILD_ID", strings[1]);
+                    data = URLEncoder.encode("childId","UTF-8")+"="+URLEncoder.encode(strings[1],"UTF-8") + "&&" +
+                            URLEncoder.encode("parentId","UTF-8")+"="+URLEncoder.encode(strings[0],"UTF-8");
+                    break;
+                case Endpoints.GET_ALL_CHILDREN_TASK:
+                    data = URLEncoder.encode("parentId","UTF-8")+"="+URLEncoder.encode(strings[0],"UTF-8") + "&&" +
+                            URLEncoder.encode("fcmToken","UTF-8")+"="+URLEncoder.encode(strings[1],"UTF-8");
+
             }
 
             writer.write(data);
